@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavasa Hive</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
+        
+        const firebaseConfig = {
+            apiKey: "your_api_key",
+            authDomain: "your_auth_domain",
+            projectId: "your_project_id",
+            storageBucket: "your_storage_bucket",
+            messagingSenderId: "your_messaging_sender_id",
+            appId: "your_app_id",
+            measurementId: "your_measurement_id"
+        };
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Lavasa Hive</h1>
+        <div class="search-container">
+            <input type="text" id="searchBar" placeholder="Search locations..." onkeyup="searchLocations()">
+        </div>
+    </header>
+    <div class="topbar">
+        <div class="menu-item active" onclick="showFlats('Available Flats')">Available Flats</div>
+        <div class="menu-item" onclick="showFlats('Thicket Street')">Thicket Street</div>
+        <div class="menu-item" onclick="showFlats('Thicket Crescent')">Thicket Crescent</div>
+        <div class="menu-item" onclick="showFlats('School Street')">School Street</div>
+        <div class="menu-item" onclick="showFlats('Portofino')">Portofino</div>
+        <div class="menu-item" onclick="showFlats('Delfino')">Delfino</div>
+        <div class="menu-item" onclick="showFlats('Valley Street')">Valley Street</div>
+        <div class="menu-item" onclick="showFlats('Hill View')">Hill View</div>
+        <div class="menu-item" onclick="showFlats('Club View')">Club View</div>
+    </div>
+    <div id="content">
+        <div id="flatsInfo"></div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalDetails"></div>
+        </div>
+    </div>
+    <div id="accountModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('accountModal')">&times;</span>
+            <form id="accountForm" action="/register" method="post">
+                <h2>Welcome to Lavasa Hive</h2>
+                <p>Please enter your details to continue:</p>
+                <input type="text" id="userName" name="userName" placeholder="Your Name" required>
+                <input type="text" id="userPhone" name="userPhone" placeholder="Mobile Number" required>
+                <input type="email" id="userEmail" name="userEmail" placeholder="Email Address" required>
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
